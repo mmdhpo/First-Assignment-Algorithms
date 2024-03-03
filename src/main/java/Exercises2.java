@@ -1,3 +1,4 @@
+import java.nio.charset.CharsetEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,17 @@ public class Exercises2 {
     */
 
     public int[] twoSum(int[] nums, int target) {
-        // TODO
+        int[] list = new int[2];
+
+        for (int i = 0; i < nums.length -1; i++){
+            for(int j = i + 1; j < nums.length; j++){
+                if(nums[i] + nums[j] == target){
+                    list[0] = i;
+                    list[1] = j;
+                    return list;
+                }
+            }
+        }
         return null;
     }
 
@@ -44,13 +55,30 @@ public class Exercises2 {
     I can be placed before V (5) and X (10) to make 4 and 9.
     X can be placed before L (50) and C (100) to make 40 and 90.
     C can be placed before D (500) and M (1000) to make 400 and 900.
-
     Given a roman numeral, convert it to an integer.
     */
 
     public int romanToInt(String s) {
-        // TODO
-        return 0;
+        int num = 0;
+        HashMap<Character, Integer> roman = new HashMap<Character, Integer>();
+        roman.put('I', 1);
+        roman.put('V', 5);
+        roman.put('X', 10);
+        roman.put('L', 50);
+        roman.put('C', 100);
+        roman.put('D', 500);
+        roman.put('M', 1000);
+        int prevNum = 0;
+        for(int i = s.length() - 1; i >= 0; i--){
+            int currNum = roman.get(s.charAt(i));
+            if(prevNum > currNum){
+                num -= currNum;
+                continue;
+            }
+            num += currNum;
+            prevNum = currNum;
+        }
+        return num;
     }
 
     /*
@@ -59,8 +87,22 @@ public class Exercises2 {
     */
 
     public List<List<Integer>> permute(int[] nums) {
-        // TODO
-        return null;
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(result, new ArrayList<>(), nums);
+        return result;
+    }
+    private void backtrack(List<List<Integer>> result, List<Integer> current, int[] nums) {
+        if (current.size() == nums.length) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
+        for (int num : nums) {
+            if (!current.contains(num)) {
+                current.add(num);
+                backtrack(result, current, nums);
+                current.remove(current.size() - 1);
+            }
+        }
     }
 
     public static void main(String[] args) {
