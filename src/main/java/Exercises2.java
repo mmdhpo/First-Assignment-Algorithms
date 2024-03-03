@@ -31,7 +31,6 @@ public class Exercises2 {
 
     /*
     Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
-
     Symbol       Value
     I             1
     V             5
@@ -40,7 +39,6 @@ public class Exercises2 {
     C             100
     D             500
     M             1000
-
     For example, 2 is written as II in Roman numeral, just two ones added together.
     12 is written as XII, which is simply X + II.
     The number 27 is written as XXVII, which is XX + V + II.
@@ -104,7 +102,6 @@ public class Exercises2 {
             }
         }
     }
-
     public static void main(String[] args) {
         // test your code here!
     }
